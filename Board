@@ -1,1 +1,24 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+public class board extends JApplet
+{
+	JPanel p1;
+	public board()
+	{
+		p1 = new JPanel();
+		p1.setLayout(null);
 
+
+	}
+	public class DrawingPanel extends JPanel
+		{
+			public void paintComponent(Graphics g)
+			{
+				super.paintComponent(g);
+				g.drawRect(0,0,300,500);
+			
+
+			}
+	}
+}
