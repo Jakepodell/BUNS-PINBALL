@@ -10,20 +10,6 @@ public class Ball extends Ellipse2D.Double
   {
 	  super(px, py, HEIGHT, WIDTH);
   }
-
-  public boolean intersects(Shape pshape)
-  {
-	  Area ballArea = new Area(this);
-	  Area objectArea = new Area(pshape);
-	  Area intersectionArea = ballArea;
-	  intersectionArea.intersect(objectArea);
-
-	  if(intersectionArea.isEmpty())
-	  	return false;
-	  else
-	  	return true;
-  }
-
   public double getDirectionAngle()
   {
     return directionAngle;
