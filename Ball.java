@@ -23,21 +23,7 @@ public class Ball extends Ellipse2D.Double
 	  Graphics g2d = (Graphics2D)g;
 	  Ellipse2D.Double newCircle = new Ellipse2D.Double(currentXcoord, currentYcoord, HEIGHT, WIDTH);
 	  g2d.fill(circle);
-  }//what I think it should be but I am not sure 
-
-  public boolean intersects(Shape pshape)
-  {
-	  Area ballArea = new Area(this);
-	  Area objectArea = new Area(pshape);
-	  Area intersectionArea = ballArea;
-	  intersectionArea.intersect(objectArea);
-
-	  if(intersectionArea.isEmpty())
-	  	return false;
-	  else
-	  	return true;
-  }
-
+  }//what I think it should be but I am not sure
   public double getDirectionAngle()
   {
     return directionAngle;
