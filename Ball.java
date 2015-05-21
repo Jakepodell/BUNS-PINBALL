@@ -1,4 +1,5 @@
-import java.awt.geom;
+import java.awt.geom.*;
+import java.awt.Shape;
 public class Ball extends Ellipse2D.Double
 {
   private double directionAngle;
@@ -14,14 +15,16 @@ public class Ball extends Ellipse2D.Double
   {
 	  Area ballArea = new Area(this);
 	  Area objectArea = new Area(pshape);
+	  Area intersectionArea = ballArea;
+	  intersectionArea.intersect(objectArea);
 
-	  if(ballArea.intersects(objectArea))
-	  	return true;
-	  else
+	  if(intersectionArea.isEmpty())
 	  	return false;
+	  else
+	  	return true;
   }
 
-  public int getDirectionAngle()
+  public double getDirectionAngle()
   {
     return directionAngle;
   }
