@@ -1,24 +1,43 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class board extends JApplet
+import java.io.*;
+import javax.imageio.*;
+public class board extends Rectangle
 {
-	JPanel p1;
+	Rectangle r;
 	public board()
 	{
-		p1 = new JPanel();
-		p1.setLayout(null);
-
+		r = new Rectangle(0,0,300,500);
 
 	}
-	public class DrawingPanel extends JPanel
-		{
-			public void paintComponent(Graphics g)
+	public Rectangle getBounds()
+	{
+		return r.getBounds();
+	}
+	public boolean intersects(Rectangle r1)
+	{
+			if(r.intersects(r1))
+				return true;
+			else
+				return false;
+
+	}
+	public boolean contains(Rectangle r1)
+	{
+			if(r.contains(r1))
+				return true;
+			else
+				return false;
+
+	}
+
+
+			public void draw(Graphics g)
 			{
-				super.paintComponent(g);
+
 				g.drawRect(0,0,300,500);
-			
 
 			}
-	}
+
 }
