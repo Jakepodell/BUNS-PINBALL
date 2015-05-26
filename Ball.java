@@ -14,16 +14,35 @@ public class Ball extends Ellipse2D.Double
 	  currentYcoord = py;
 	  super(currentXcoord, currentYcoord, HEIGHT, WIDTH);
   }
-  public void drawBall(int pxcoord, pycoord)
+  public void drawBall(Graphics g2d)
   {
-	  
+	  super.paintComponent(g2d);
+	  Ellipse.Double newCircle = new Ellipse2D.Double(currentXcoord, currentYcoord, HEIGHT, WIDTH);
+	  g2d.fill(circle);
+
   }//not sure if this instead
+  /*
   public void paintComponent(Graphics g){
 	  super.paintComponent(g);
 	  Graphics g2d = (Graphics2D)g;
 	  Ellipse2D.Double newCircle = new Ellipse2D.Double(currentXcoord, currentYcoord, HEIGHT, WIDTH);
 	  g2d.fill(circle);
   }//what I think it should be but I am not sure
+  */
+
+  public boolean intersects(Shape pshape)
+  {
+	  Area ballArea = new Area(this);
+	  Area objectArea = new Area(pshape);
+	  Area intersectionArea = ballArea;
+	  intersectionArea.intersect(objectArea);
+
+	  if(intersectionArea.isEmpty())
+	  	return false;
+	  else
+	  	return true;
+  }
+
   public double getDirectionAngle()
   {
     return directionAngle;
