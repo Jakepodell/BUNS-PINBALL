@@ -15,7 +15,7 @@ public class Collision{
     }
     public static boolean intersectsBoard(Ball ball, Board board){
       Area ballArea = new Area(ball);
-      Rectangle2D boardRect = board.getRect();
+      Rectangle2D boardRect = board.getBounds();
       Area boardArea = new Area(boardRect);
       
       ballArea.exclusiveOr(boardArea);
