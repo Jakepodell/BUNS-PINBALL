@@ -1,43 +1,20 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
-import javax.imageio.*;
-public class board extends Rectangle
+import java.lang.Object;
+import java.awt.geom.RectangularShape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
+public class Board extends Rectangle2D.Double
 {
-	Rectangle r;
-	public board()
+	Graphics2D g2;
+	public Board(int xcord, int ycord, int height, int width)
 	{
-		r = new Rectangle(0,0,300,500);
-
+		super(xcord,ycord,height,width);
 	}
-	public Rectangle getBounds()
+	public void draw(Graphics g)
 	{
-		return r.getBounds();
+		g2 = (Graphics2D) g;
+		g2.draw(this);
 	}
-	public boolean intersects(Rectangle r1)
-	{
-			if(r.intersects(r1))
-				return true;
-			else
-				return false;
-
-	}
-	public boolean contains(Rectangle r1)
-	{
-			if(r.contains(r1))
-				return true;
-			else
-				return false;
-
-	}
-
-
-			public void draw(Graphics g)
-			{
-
-				g.drawRect(0,0,300,500);
-
-			}
-
 }
