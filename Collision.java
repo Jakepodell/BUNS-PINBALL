@@ -7,7 +7,7 @@ public class Collision{
   	  Area objectArea = new Area(pshape);
   	  Area intersectionArea = ballArea;
   	  intersectionArea.intersect(objectArea);
-  
+
   	  if(intersectionArea.isEmpty())
   	  	return false;
   	  else
@@ -17,11 +17,21 @@ public class Collision{
       Area ballArea = new Area(ball);
       Rectangle2D boardRect = board.getBounds();
       Area boardArea = new Area(boardRect);
-      
+
       ballArea.exclusiveOr(boardArea);
-      
+
       if(!ballArea.isEmpty())
         return true;
       return false;
     }
+    public static void checkBoardIntersection(Board board, Ball ball){
+		if(ball.getRightSide()>=board.getRightSide()
+		|| ball.getLeftSide()<=board.getLeftSide()){
+			ball.flipXVelocity();
+		}
+		if(ball.getBottomSide()>=board.getBottomSide()
+		|| ball.getTopSide()<=board.getTopSide()){
+			ball.flipYVelocity();
+		}
+	}
 }
