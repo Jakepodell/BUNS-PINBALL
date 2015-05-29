@@ -2,44 +2,45 @@ import java.awt.geom.*;
 import java.awt.Shape;
 import java.awt.*;
 public class Ball extends Ellipse2D.Double{
-  private double directionAngle;
-  private int speed;
-  public static final int HEIGHT=25;
-  public static final int WIDTH=25;
-  public static int currentXcoord;
-  public static int currentYcoord;
+  private int xVelocity=5;
+  private int yVelocity=5;
+  public static final int HEIGHT=10;
+  public static final int WIDTH=10;
   public Ball(int px, int py){
-	  super(px,py, HEIGHT, WIDTH);
-  	  currentXcoord = px;
-	  currentYcoord = py;
-
+	  super();
+	  updateBall(px,py);
+	  setFrame(x,y,WIDTH,HEIGHT);
   }
   public void drawBall(Graphics2D g2d){
+	GradientPaint  blacktowhite = new GradientPaint((int)x,(int)y,Color.BLACK,(int)x+WIDTH,(int) y+HEIGHT,Color.WHITE);
+		g2d.setPaint(blacktowhite);
 	  g2d.fill(this);
   }
-  public void updateBall(int px, int py, Graphics2D g2d){
-	  currentXcoord = px;
-	  currentYcoord = py;
-	  drawBall(g2d);
+  public void updateBall(int px, int py){
+	  x = px;
+	  y = py;
   }
-
-  public boolean intersects(Shape pshape){
-	  Area ballArea = new Area(this);
-	  Area objectArea = new Area(pshape);
-	  Area intersectionArea = ballArea;
-	  intersectionArea.intersect(objectArea);
-
-	  if(intersectionArea.isEmpty())
-	  	return false;
-	  else
-	  	return true;
+  public void move(){
+	  x+=xVelocity;
+	  y+=yVelocity;
   }
-
-  public double getDirectionAngle(){
-    return directionAngle;
+  public double getRightSide(){
+	  return x+WIDTH;
   }
-  public int getSpeed(){
-    return speed;
+  public double getLeftSide(){
+	  return x;
+  }
+  public double getTopSide(){
+	  return y;
+  }
+  public double getBottomSide(){
+	  return y+HEIGHT;
+  }
+  public void flipXVelocity(){
+	  xVelocity*=-1;
+  }
+  public void flipYVelocity(){
+	  yVelocity*=-1;
   }
 }
 
