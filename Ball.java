@@ -13,8 +13,10 @@ public class Ball extends Ellipse2D.Double{
   }
   public void drawBall(Graphics2D g2d){
 	GradientPaint  blacktowhite = new GradientPaint((int)x,(int)y,Color.BLACK,(int)x+WIDTH,(int) y+HEIGHT,Color.WHITE);
-		g2d.setPaint(blacktowhite);
-	  g2d.fill(this);
+	g2d.setPaint(blacktowhite);
+	g2d.fill(this);
+	g2d.setPaint(null);
+	g2d.setColor(Color.black);
   }
   public void updateBall(int px, int py){
 	  x = px;
@@ -43,5 +45,3 @@ public class Ball extends Ellipse2D.Double{
 	  yVelocity*=-1;
   }
 }
-
-
