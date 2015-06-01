@@ -21,5 +21,8 @@ public class BoardPanel extends JPanel
 	public void update(){
 		b.update();
 	}
+	public Board getBoard(){
+		return b;
+	}
 
 }
