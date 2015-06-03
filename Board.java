@@ -12,7 +12,8 @@ public class Board extends Rectangle2D.Double
 	public final static int Y=0;
 	public final static int WIDTH=350;
 	public final static int HEIGHT=500;
-	Flipper f = new Flipper(200,300);
+	LeftFlipper lf = new LeftFlipper(160,450);
+	RightFlipper rf = new RightFlipper(285,450);
 	public Board(int xcord, int ycord, int height, int width)
 	{
 		super(xcord,ycord,height,width);
@@ -28,7 +29,8 @@ public class Board extends Rectangle2D.Double
 		g.draw(this);
 		//g.draw(ball);
 		ball.drawBall(g);
-		f.drawFlip(g);
+		lf.drawFlip(g);
+		rf.drawFlip(g);
 	}
 	public void update(){
 		Collision.checkBoardIntersection(this,ball);
@@ -46,7 +48,10 @@ public class Board extends Rectangle2D.Double
 	public int getBottomSide(){
 		return PinballDriver.APPLETPADDING+HEIGHT;
 	}
-	public Flipper getFlipper(){
-		return f;
+	public Flipper getLeftFlipper(){
+		return (Flipper)lf;
+	}
+	public Flipper getRightFlipper(){
+			return (Flipper)rf;
 	}
 }
