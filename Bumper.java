@@ -3,8 +3,9 @@ import java.awt.Shape;
 import java.awt.*;
 
 public class Bumper extends Ellipse2D.Double{
-  public static final int HEIGHT=30;
-  public static final int WIDTH=30;
+  public static final int HEIGHT=20;
+  public static final int WIDTH=20;
+  public int radius = WIDTH/2;
   public Bumper(int px, int py){
 	  super();
 	  setFrame(px,py,WIDTH,HEIGHT);
@@ -25,7 +26,19 @@ public class Bumper extends Ellipse2D.Double{
   public double getTopSide(){
 	  return y;
   }
+  public double getX(){
+  	  return x;
+    }
+    public double getY(){
+  	  return y;
+  }
   public double getBottomSide(){
 	  return y+HEIGHT;
+  }
+  public double x(){
+  	  return x+radius;
+    }
+    public double y(){
+  	  return y+radius;
   }
 }
