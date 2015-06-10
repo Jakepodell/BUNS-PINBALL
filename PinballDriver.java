@@ -24,7 +24,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 			bp.update();
 			repaint();
 			try {
-				Thread.sleep(30L);
+				Thread.sleep(5l);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -43,17 +43,25 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 	}
 	public void keyPressed(KeyEvent e)
 	{
-		if(e.getKeyCode() == KeyEvent.VK_LEFT)
+		if(e.getKeyCode() == KeyEvent.VK_LEFT && !bp.getBoard().getLeftFlipper().isUp())
 		{
 			bp.getBoard().getLeftFlipper().Flip();
 		}
-		if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+		if(e.getKeyCode() == KeyEvent.VK_RIGHT && !bp.getBoard().getRightFlipper().isUp())
 				{
 					bp.getBoard().getRightFlipper().Flip();
 		}
 	}
 		public void keyReleased(KeyEvent e)
 		{
+			if(e.getKeyCode() == KeyEvent.VK_LEFT)
+			{
+				bp.getBoard().getLeftFlipper().Flip();
+			}
+			if(e.getKeyCode() == KeyEvent.VK_RIGHT)
+			{
+				bp.getBoard().getRightFlipper().Flip();
+			}
 
 		}
 		public void keyTyped(KeyEvent e)
