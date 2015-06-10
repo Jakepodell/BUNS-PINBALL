@@ -1,4 +1,3 @@
-
 import java.awt.geom.*;
 import java.awt.Shape;
 public class Collision{
@@ -31,8 +30,8 @@ public class Collision{
 			ball.flipXVelocity();
 			ball.moveHoriz();
 		}
-		if(ball.getBottomSide()==board.getBottomSide()
-		|| ball.getTopSide()==board.getTopSide()){
+		if(//ball.getBottomSide()==board.getBottomSide()||
+		(ball.getTopSide()==board.getTopSide() && ball.getYVelocity()<2)){
 			ball.flipYVelocity();
 			ball.moveVert();
 			return;
@@ -73,5 +72,10 @@ public class Collision{
 				ball.addYVelocity();
 			}
 		}
+	}
+	public static boolean ballHasFallen(Ball b){
+		if(b.getY()>Board.Y+Board.HEIGHT+PinballDriver.APPLETPADDING)
+			return true;
+		return false;
 	}
 }
