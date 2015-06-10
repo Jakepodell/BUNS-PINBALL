@@ -7,7 +7,9 @@ import java.awt.geom.Rectangle2D;
 import java.awt.geom.Rectangle2D.Double;
 public class Board extends Rectangle2D.Double
 {
-	Ball ball = new Ball(300,300);
+	Ball[] balls = {(new Ball(300,0)),(new Ball(300,0)),(new Ball(300,0))};
+	int ballIndex=0;
+	Ball ball = balls[0];
 	Bumper bumper = new Bumper(200,200);
 	Bumper bumper2 = new Bumper(310,400);
 	public final static int X=0;
@@ -57,6 +59,10 @@ public class Board extends Rectangle2D.Double
 			ball.moveVert();
 		}
 		ball.gravitize();
+		if(Collision.ballHasFallen(ball)){
+			ballIndex++;
+			ball=balls[ballIndex];
+		}
 	}
 	public int getRightSide(){
 		return WIDTH+PinballDriver.APPLETPADDING;
