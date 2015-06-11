@@ -9,10 +9,11 @@ public class BoardPanel extends JPanel
 {
 
 	Board b;
-	public BoardPanel()
+	ScorePanel sp;
+	public BoardPanel(ScorePanel sp)
 	{
-
-		b = new Board();
+		this.sp=sp;
+		b = new Board(sp);
 
 	}
 	public void drawBoardPanel(Graphics2D g2){
