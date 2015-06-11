@@ -62,7 +62,7 @@ public class Ball extends Ellipse2D.Double{
   }
   public void gravitize(){
 	  if(yVelocity<terminalVelocity && gravityCounter%20==0){
-		  yVelocity++;
+		  yVelocity+=2;
 	  }
 	  gravityCounter++;
   }
@@ -89,6 +89,6 @@ public class Ball extends Ellipse2D.Double{
 	  return y+radius;
   }
   public void addYVelocity(){
-	  yVelocity-=3;
+	  yVelocity-=5;
   }
 }
