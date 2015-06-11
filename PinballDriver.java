@@ -16,8 +16,9 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		//timer = new Timer(20, this);
 		//timer.start();
 		setLayout(null);
+		s = new ScorePanel();
 		s.setLocation(450,50);
-		add(s)
+		add(s);
 		thread = new Thread(this);
 		thread.start();
 		setFocusable(true);
@@ -28,7 +29,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 			bp.update();
 			repaint();
 			try {
-				Thread.sleep(5l);
+				Thread.sleep(8l);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
