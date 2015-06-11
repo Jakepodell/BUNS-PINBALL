@@ -15,11 +15,11 @@ public class ScorePanel extends JPanel
 	int currentscore = 0;
 	int highscore = 0;
 	int livesleft = 3;
+
 	public ScorePanel()
 	{
 				setSize(300,500);
 				setLayout(new GridLayout(4,1));
-
 				score = new JLabel("Your score is: " + currentscore);
 				lives = new JLabel("You have " + livesleft + " lives left");
 				HighScore = new JLabel("The High Score is: " + highscore);
@@ -32,12 +32,20 @@ public class ScorePanel extends JPanel
 				add(score);
 				add(lives);
 				add(HighScore);
-
-
 	}
 	public int getScore()
 	{
 		return currentscore;
+	}
+	public void addScore(int s)
+	{
+		currentscore += s;
+		score.setText("Your score is: " + currentscore);
+	}
+	public void loseLife()
+		{
+			livesleft--;
+			lives.setText("You have " + livesleft + " lives left");
 	}
 	public int getLives()
 	{
