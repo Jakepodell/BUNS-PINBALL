@@ -1,5 +1,6 @@
 import java.awt.geom.*;
 import java.awt.Shape;
+import java.util.*;
 public class Collision{
     public static boolean intersectsShape(Ball b, Shape pshape){
   	  Area ballArea = new Area(b);
@@ -45,22 +46,24 @@ public class Collision{
 			ball.moveVert();
 		}
 	}
-	public static void checkBumperCollision(Bumper bumper, Ball ball){
-		double bumperCenterX = bumper.getX()+Bumper.WIDTH/2;
-		double bumperCenterY = bumper.getY()+Bumper.HEIGHT/2;
-		double ballCenterX = ball.getX()+Ball.WIDTH/2;
-		double ballCenterY = ball.getY()+Ball.HEIGHT/2;
-		double radicalTwo = Math.pow(2,.5);
-		double s = Bumper.WIDTH/2/(radicalTwo/1.05);
+	public static void checkBumperCollision(ArrayList<Bumper> bumpers, Ball ball){
+		for(Bumper bumper:bumpers){
+			double bumperCenterX = bumper.getX()+Bumper.WIDTH/2;
+			double bumperCenterY = bumper.getY()+Bumper.HEIGHT/2;
+			double ballCenterX = ball.getX()+Ball.WIDTH/2;
+			double ballCenterY = ball.getY()+Ball.HEIGHT/2;
+			double radicalTwo = Math.pow(2,.5);
+			double s = Bumper.WIDTH/2/(radicalTwo/.85);
 
-		if(intersectsShape(ball,bumper)){
-			if(ball.getBottomSide()<=bumperCenterY-s || ball.getTopSide()>=bumperCenterY+s)
-				ball.flipYVelocity();
-			if(ball.getLeftSide()>=bumperCenterX+s || ball.getRightSide()<=bumperCenterX-s)
-				ball.flipXVelocity();
-			else{
-				ball.flipXVelocity();
-				ball.flipYVelocity();
+			if(intersectsShape(ball,bumper)){
+				if(ball.getBottomSide()<=bumperCenterY-s || ball.getTopSide()>=bumperCenterY+s)
+					ball.flipYVelocity();
+				if(ball.getLeftSide()>=bumperCenterX+s || ball.getRightSide()<=bumperCenterX-s)
+					ball.flipXVelocity();
+				/*else{
+					ball.flipXVelocity();
+					ball.flipYVelocity();
+				}*/
 			}
 		}
 	}
