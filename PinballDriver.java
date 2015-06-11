@@ -12,11 +12,11 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 	{
 		setContentPane(new DrawingPanel());
 		setSize(new Dimension(Board.WIDTH+APPLETPADDING*2, Board.HEIGHT+APPLETPADDING*2));
-		bp = new BoardPanel();
+		s = new ScorePanel();
+		bp = new BoardPanel(s);
 		//timer = new Timer(20, this);
 		//timer.start();
 		setLayout(null);
-		s = new ScorePanel();
 		s.setLocation(450,50);
 		add(s);
 		thread = new Thread(this);
