@@ -19,15 +19,17 @@ public class Board extends Rectangle2D.Double
 	//System.out.println("Fdsf");
 	LeftFlipper lf = new LeftFlipper(LeftFlipper.X,Flipper.Y);
 	RightFlipper rf = new RightFlipper(RightFlipper.X,Flipper.Y);
+	ScorePanel sp;
 	public Board(int xcord, int ycord, int height, int width)
 	{
 		super(xcord,ycord,height,width);
 	}
-	public Board(){
+	public Board(ScorePanel sp){
 		super(X+PinballDriver.APPLETPADDING,
 		Y+PinballDriver.APPLETPADDING,
 		WIDTH,
 		HEIGHT);
+		this.sp=sp;
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2-30),200));
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+30),200));
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2),150));
@@ -53,15 +55,15 @@ public class Board extends Rectangle2D.Double
 		Flipper[] flips = {rf,lf};
 		for(int i =0; i<Math.abs(ball.getXVelocity()); i++){
 			Collision.checkBoardIntersection(this,ball);
-			Collision.checkBumperCollision(bumpers,ball);
-			Collision.checkFlipperCollision(flips,ball);
+			Collision.checkBumperCollision(bumpers,ball,sp);
+			Collision.checkFlipperCollision(flips,ball,sp);
 			ball.moveHoriz();
 
 		}
 		for(int i =0; i<Math.abs(ball.getYVelocity()); i++){
 			Collision.checkBoardIntersection(this,ball);
-			Collision.checkBumperCollision(bumpers,ball);
-			Collision.checkFlipperCollision(flips,ball);
+			Collision.checkBumperCollision(bumpers,ball,sp);
+			Collision.checkFlipperCollision(flips,ball,sp);
 			ball.moveVert();
 		}
 		ball.gravitize();
