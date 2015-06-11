@@ -32,7 +32,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 			if(scoreCounter%20==0)s.addScore(1);
 			scoreCounter++;
 			try {
-				Thread.sleep(10l);
+				Thread.sleep(10);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

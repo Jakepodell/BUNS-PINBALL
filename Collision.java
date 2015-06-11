@@ -55,13 +55,13 @@ public class Collision{
 			double ballCenterX = ball.getX()+Ball.WIDTH/2;
 			double ballCenterY = ball.getY()+Ball.HEIGHT/2;
 			double radicalTwo = Math.pow(2,.5);
-			double s = Bumper.WIDTH/2/(radicalTwo/.85);
+			double s = Bumper.WIDTH/2/(radicalTwo*1.2);
 
 			if(intersectsShape(ball,bumper)){
 				sp.addScore(BUMPER);
-				if(ball.getBottomSide()<=bumperCenterY-s || ball.getTopSide()>=bumperCenterY+s)
+				if((ball.getBottomSide()<=bumperCenterY-s && ball.getYVelocity()>0) || (ball.getTopSide()>=bumperCenterY+s && ball.getYVelocity()<0))
 					ball.flipYVelocity();
-				if(ball.getLeftSide()>=bumperCenterX+s || ball.getRightSide()<=bumperCenterX-s)
+				if((ball.getLeftSide()>=bumperCenterX+s && ball.getXVelocity()<0) || (ball.getRightSide()<=bumperCenterX-s && ball.getXVelocity()>0))
 					ball.flipXVelocity();
 				/*else{
 					ball.flipXVelocity();

@@ -3,8 +3,7 @@ public class LeftFlipper extends Flipper{
 	public static final int X = 150;
 	public LeftFlipper(int px, int py){
 		super(px,py);
-		int[] triangleXs = {X,X+Flipper.WIDTH,X+Flipper.WIDTH};
-		int[] triangleYs = {Flipper.Y, Flipper.Y-Flipper.HEIGHT,Flipper.Y+Flipper.HEIGHT};
+		int[] triangleXs = {X,X+(int)(Flipper.WIDTH*.9),X+(int)(Flipper.WIDTH*.9)};
 		triangleArea = new Polygon(triangleXs,triangleYs,3);
 	}
 

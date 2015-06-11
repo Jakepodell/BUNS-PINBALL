@@ -48,8 +48,8 @@ public class Board extends Rectangle2D.Double
 		rf.drawFlip(g);
 		for(Bumper bumper:bumpers)
 			bumper.drawBumper(g);
-		//g.fill(lf.getCollisionArea());
-		//g.fill(rf.getCollisionArea());
+		g.fill(lf.getCollisionArea());
+		g.fill(rf.getCollisionArea());
 	}
 	public void update(){
 		Flipper[] flips = {rf,lf};
@@ -70,6 +70,7 @@ public class Board extends Rectangle2D.Double
 		if(Collision.ballHasFallen(ball)){
 			ballIndex++;
 			ball=balls[ballIndex];
+			sp.loseLife();
 		}
 	}
 	public int getRightSide(){

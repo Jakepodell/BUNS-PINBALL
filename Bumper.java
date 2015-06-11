@@ -16,6 +16,7 @@ public class Bumper extends Ellipse2D.Double{
 	g2d.fill(this);
 	g2d.setPaint(null);
 	g2d.setColor(Color.green);
+	g2d.fill(this.getRect());
   }
   public double getRightSide(){
 	  return x+WIDTH;
@@ -40,5 +41,12 @@ public class Bumper extends Ellipse2D.Double{
     }
     public double y(){
   	  return y+radius;
+  }
+  public Rectangle getRect(){
+	  double bumperCenterX = this.getX()+Bumper.WIDTH/2;
+	  double bumperCenterY = this.getY()+Bumper.HEIGHT/2;
+	  double radicalTwo = Math.sqrt(2);
+	  double s = Bumper.WIDTH/2/(radicalTwo*.8);
+	  return (new Rectangle((int)(bumperCenterX-s), (int)(bumperCenterY-s),(int)(s*2),(int)(s*2.0)));
   }
 }

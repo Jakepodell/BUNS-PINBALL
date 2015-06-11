@@ -2,13 +2,22 @@
 import java.awt.*;
 import java.awt.event.*;
 import javax.swing.*;
-public class Driver extends JApplet
+public class pinballDriver extends JApplet
 {
-	public void init(){
+	public void init()
+	{
 	setContentPane(new DrawingPanel());
+
+
 	}
-	public class DrawingPanel extends JPanel{
+
+	 public class DrawingPanel extends JPanel
+	{
+	  public void paintComponent(Graphics g)
+  	  {
+
+
+ 	  }
+
 	}
-	public void paintComponent(Graphics g){
- 	}
 }
