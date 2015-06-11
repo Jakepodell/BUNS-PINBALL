@@ -8,10 +8,11 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 	//Timer timer;
 	Thread thread;
 	ScorePanel s;
+	double scoreCounter;
 	public void init()
 	{
 		setContentPane(new DrawingPanel());
-		setSize(new Dimension(Board.WIDTH+APPLETPADDING*2, Board.HEIGHT+APPLETPADDING*2));
+		setSize(new Dimension(Board.WIDTH+APPLETPADDING*2+300, Board.HEIGHT+APPLETPADDING*2));
 		s = new ScorePanel();
 		bp = new BoardPanel(s);
 		//timer = new Timer(20, this);
@@ -28,8 +29,10 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		while(true){
 			bp.update();
 			repaint();
+			if(scoreCounter%20==0)s.addScore(1);
+			scoreCounter++;
 			try {
-				Thread.sleep(8l);
+				Thread.sleep(10l);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
