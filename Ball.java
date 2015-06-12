@@ -72,6 +72,12 @@ public class Ball extends Ellipse2D.Double{
   public double getYVelocity(){
 	  return yVelocity;
   }
+  public void setXVelocity(int i){
+  	  xVelocity=i;
+    }
+    public void setYVelocity(int i){
+  	  yVelocity=i;
+  }
   public void setVelocity(double x,double y){
 	  xVelocity=(int)x;
 	  yVelocity=(int)y;

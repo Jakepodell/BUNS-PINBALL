@@ -10,10 +10,12 @@ public class Flipper
 	boolean isUp = false;
 	int x1;
 	int y1;
-	int xlength = 50;
+	int xlength = 60;
 	int ylength = 30;
 	Polygon triangleArea;
-	int[] triangleYs = {Flipper.Y, Flipper.Y-Flipper.HEIGHT,Flipper.Y+(int)(Flipper.HEIGHT*1)};
+	int[] triangleYs = {Flipper.Y, Flipper.Y-Flipper.HEIGHT,Flipper.Y+(Flipper.HEIGHT)};
+	Line2D.Double upLine;
+	Line2D.Double downLine;
 	public Flipper(int x1, int y1)
 	{
 		this.x1 = x1;
@@ -29,6 +31,9 @@ public class Flipper
 	}
 	public boolean isUp(){
 		return isUp;
+	}
+	public Line2D.Double getUpLine(){
+		return upLine;
 	}
 
 }

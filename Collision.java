@@ -27,7 +27,7 @@ public class Collision{
       return false;
     }
     public static void checkBoardIntersection(Board board, Ball ball){
-		System.out.println(ball.getRightSide());
+//		System.out.println(ball.getRightSide());
 		if(ball.getRightSide()==board.getRightSide()
 		|| ball.getLeftSide()==board.getLeftSide()){
 			ball.flipXVelocity();
@@ -77,8 +77,15 @@ public class Collision{
 				ball.flipYVelocity();
 				ball.addYVelocity();
 				sp.addScore(FLIPPER);
-				ball.updateBall((int)ball.getX(),Flipper.Y+Flipper.HEIGHT);
+				ball.updateBall((int)ball.getX(),Flipper.Y-Flipper.HEIGHT-15);
 			}
+		}
+	}
+	public static void checkStaticFlipperCollision(Flipper left,Flipper right, Ball ball){
+		if(left.isUp()&&left.getUpLine().intersects(ball.getBounds2D())){
+			System.out.println("Collision");
+			ball.setXVelocity((int)ball.getXVelocity()+-4);
+			ball.setYVelocity(-3);
 		}
 	}
 	public static boolean ballHasFallen(Ball b){

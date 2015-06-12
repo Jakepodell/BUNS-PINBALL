@@ -59,14 +59,14 @@ public class Board extends Rectangle2D.Double
 		for(int i =0; i<Math.abs(ball.getXVelocity()); i++){
 			Collision.checkBoardIntersection(this,ball);
 			Collision.checkBumperCollision(bumpers,ball,sp);
-			//checkFlipperCollision();
+			Collision.checkStaticFlipperCollision(lf,rf,ball);
 			ball.moveHoriz();
 
 		}
 		for(int i =0; i<Math.abs(ball.getYVelocity()); i++){
 			Collision.checkBoardIntersection(this,ball);
 			Collision.checkBumperCollision(bumpers,ball,sp);
-			//checkFlipperCollision();
+			Collision.checkStaticFlipperCollision(lf,rf,ball);
 			ball.moveVert();
 		}
 		ball.gravitize();
