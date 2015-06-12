@@ -1,19 +1,4 @@
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-import java.lang.Object;
-import java.awt.geom.RectangularShape;
-import java.awt.geom.Rectangle2D;
-import java.awt.geom.Rectangle2D.Double;
-import java.util.*;
-public class Board extends Rectangle2D.Double
-{
-	Ball[] balls = {(new Ball(100,getBoardY())),(new Ball(375,getBoardY())),(new Ball(200,getBoardY()))};
-	ArrayList<Bumper> bumpers = new ArrayList<Bumper>();
-	int ballIndex=0;
-	Ball ball = balls[0];
-	public final static int X=0;
-	public final static int Y=0;
+public final static int Y=0;
 	public final static int WIDTH=350;
 	public final static int HEIGHT=500;
 	//System.out.println("Fdsf");
@@ -38,6 +23,13 @@ public class Board extends Rectangle2D.Double
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2-90),300));
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+135),300));
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+90),300));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2-90),100));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+90),100));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2),250));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2-135),100));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+135),100));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2-150),225));
+		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+150),225));
 	}
 	public void drawBoard(Graphics2D g)
 	{
