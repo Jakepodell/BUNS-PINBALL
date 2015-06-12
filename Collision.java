@@ -43,7 +43,7 @@ public class Collision{
 	}
 	public static void checkBottomIntersection(Board board, Ball ball){
 		if(ball.getY()+Ball.HEIGHT==Flipper.Y&&
-		(ball.getX()<LeftFlipper.X || ball.getX()>RightFlipper.X)){
+		(ball.getX()<(LeftFlipper.X+5) || ball.getX()+Ball.WIDTH>RightFlipper.X)){
 			ball.flipYVelocity();
 			ball.moveVert();
 		}
@@ -77,6 +77,7 @@ public class Collision{
 				ball.flipYVelocity();
 				ball.addYVelocity();
 				sp.addScore(FLIPPER);
+				ball.updateBall((int)ball.getX(),Flipper.Y+Flipper.HEIGHT);
 			}
 		}
 	}

@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.geom.*;
 public class Flipper
 {
-	public static final int WIDTH=55;
+	public static final int WIDTH=60;
 	public static final int HEIGHT=30;
 	public static final int Y = 450;
 	boolean isUp = false;

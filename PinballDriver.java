@@ -54,10 +54,12 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		if(e.getKeyCode() == KeyEvent.VK_LEFT && !bp.getBoard().getLeftFlipper().isUp())
 		{
 			bp.getBoard().getLeftFlipper().Flip();
+			bp.getBoard().checkFlipperCollision();
 		}
 		if(e.getKeyCode() == KeyEvent.VK_RIGHT && !bp.getBoard().getRightFlipper().isUp())
 				{
 					bp.getBoard().getRightFlipper().Flip();
+					bp.getBoard().checkFlipperCollision();
 		}
 	}
 		public void keyReleased(KeyEvent e)

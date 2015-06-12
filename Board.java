@@ -8,7 +8,7 @@ import java.awt.geom.Rectangle2D.Double;
 import java.util.*;
 public class Board extends Rectangle2D.Double
 {
-	Ball[] balls = {(new Ball(300,getBoardY())),(new Ball(300,getBoardY())),(new Ball(300,getBoardY()))};
+	Ball[] balls = {(new Ball(100,getBoardY())),(new Ball(375,getBoardY())),(new Ball(200,getBoardY()))};
 	ArrayList<Bumper> bumpers = new ArrayList<Bumper>();
 	int ballIndex=0;
 	Ball ball = balls[0];
@@ -19,6 +19,7 @@ public class Board extends Rectangle2D.Double
 	//System.out.println("Fdsf");
 	LeftFlipper lf = new LeftFlipper(LeftFlipper.X,Flipper.Y);
 	RightFlipper rf = new RightFlipper(RightFlipper.X,Flipper.Y);
+	Flipper[] flips = {rf,lf};
 	ScorePanel sp;
 	public Board(int xcord, int ycord, int height, int width)
 	{
@@ -48,22 +49,24 @@ public class Board extends Rectangle2D.Double
 		rf.drawFlip(g);
 		for(Bumper bumper:bumpers)
 			bumper.drawBumper(g);
-		g.fill(lf.getCollisionArea());
-		g.fill(rf.getCollisionArea());
+		//g.fill(lf.getCollisionArea());
+		//g.fill(rf.getCollisionArea());
+	}
+	public void checkFlipperCollision(){
+		Collision.checkFlipperCollision(flips,ball,sp);
 	}
 	public void update(){
-		Flipper[] flips = {rf,lf};
 		for(int i =0; i<Math.abs(ball.getXVelocity()); i++){
 			Collision.checkBoardIntersection(this,ball);
 			Collision.checkBumperCollision(bumpers,ball,sp);
-			Collision.checkFlipperCollision(flips,ball,sp);
+			//checkFlipperCollision();
 			ball.moveHoriz();
 
 		}
 		for(int i =0; i<Math.abs(ball.getYVelocity()); i++){
 			Collision.checkBoardIntersection(this,ball);
 			Collision.checkBumperCollision(bumpers,ball,sp);
-			Collision.checkFlipperCollision(flips,ball,sp);
+			//checkFlipperCollision();
 			ball.moveVert();
 		}
 		ball.gravitize();

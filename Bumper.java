@@ -16,7 +16,7 @@ public class Bumper extends Ellipse2D.Double{
 	g2d.fill(this);
 	g2d.setPaint(null);
 	g2d.setColor(Color.green);
-	g2d.fill(this.getRect());
+	//g2d.fill(this.getRect());
   }
   public double getRightSide(){
 	  return x+WIDTH;
