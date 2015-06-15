@@ -14,6 +14,7 @@ public class BoardPanel extends JPanel
 	{
 		this.sp=sp;
 		b = new Board(sp);
+		setVisible(false);
 
 	}
 	public void drawBoardPanel(Graphics2D g2){

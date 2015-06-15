@@ -1,14 +1,21 @@
+import java.applet.AudioClip;
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 public class PinballDriver extends JApplet implements ActionListener, Runnable, KeyListener
 {
 	public static int APPLETPADDING=50;
+	StartPanel sp = new StartPanel();
 	BoardPanel bp;
 	//Timer timer;
 	Thread thread;
 	ScorePanel s;
 	double scoreCounter;
+	static AudioClip bumpSound, flipperSound, backgroundSound, bouncyBounce,bounce2, launchSound, solidSound,menuSound,success,lose,grassfrohit, explodeSound, explodeSound2;
+	enum GameState{playing,won,menu,lose}
+	GameState state = GameState.menu;
+	ParticleEngine pe;
 	public void init()
 	{
 		setContentPane(new DrawingPanel());
@@ -24,18 +31,64 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		thread.start();
 		setFocusable(true);
 		addKeyListener(this);
+		//sp.setVisible(true);
+		add(sp);
+		pe = new ParticleEngine();
+		
+		backgroundSound = getAudioClip(getDocumentBase(), "background.wav");
+		bumpSound = getAudioClip(getDocumentBase(), "bumpSound.wav");
+		flipperSound = getAudioClip(getDocumentBase(), "flipperSound.wav");
+		bounce2 = getAudioClip(getDocumentBase(), "bounce2.wav");
+		bouncyBounce = getAudioClip(getDocumentBase(), "bouncy-bounce.wav");
+		launchSound = getAudioClip(getDocumentBase(), "launch.wav");
+		solidSound = getAudioClip(getDocumentBase(), "solidcollide.wav");
+		menuSound= getAudioClip(getDocumentBase(),"menubackground.wav");
+		success= getAudioClip(getDocumentBase(),"success.wav");
+		lose= getAudioClip(getDocumentBase(),"lose.wav");
+		grassfrohit= getAudioClip(getDocumentBase(),"grassfroHit.wav");
+		explodeSound= getAudioClip(getDocumentBase(),"explode.wav");
+		explodeSound2= getAudioClip(getDocumentBase(),"explode2.wav");
+		
+		//backgroundSound.loop();
+	//	bouncyBounce.loop();
+
+	}
+	public static void playBumperSound(){
+		bumpSound.play();
+	}
+	public static void playFlipperSound(){
+		flipperSound.play();
 	}
 	public void run(){
 		while(true){
-			bp.update();
-			repaint();
-			if(scoreCounter%20==0)s.addScore(1);
-			scoreCounter++;
+			
+			
 			try {
-				Thread.sleep(10);
+				Thread.sleep(15);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
+			if(state==GameState.menu&&sp.isClicked){
+				sp.setVisible(false);
+				bp.setVisible(true);
+				s.setVisible(true);
+				state = GameState.playing;
+				backgroundSound.loop();
+			}
+			if(state==GameState.playing){
+				bp.update();
+				repaint();
+				if(scoreCounter%20==0)s.addScore(1);
+				scoreCounter++;
+			}
+			if(s.getScore()>s.getHighScore()){
+				s.setHighScore(s.getScore());
+				pe.explodeRandomColors(s.getX()+30,s.getY()+450);
+			}
+			for (Particle p : pe.getParticleList())
+				p.tick();
+			pe.removeOffScreenParticles();
+			
 		}
 	}
 
@@ -43,8 +96,11 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 	{
 	  public void paintComponent(Graphics g)
   	  {
+		  super.paintComponent(g);
 		  Graphics2D g2 = (Graphics2D) g;
-		  bp.drawBoardPanel(g2);
+		  pe.draw(g2);
+
+		  if(bp.isVisible())bp.drawBoardPanel(g2);
 
  	  }
 

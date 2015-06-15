@@ -66,7 +66,7 @@ public class ParticleEngine
 	{
 		//Removes particles from the arraylist if they are off screen.
 		for (Particle p : particleList)
-			if (p.getX() > ParticleDriver.WIDTH || p.getX() < 0 || p.getY() > ParticleDriver.HEIGHT)
+			if (p.getX() > 1000 || p.getX() < 0 || p.getY() > 1000)
 				particleList.remove(p);
 
 	}

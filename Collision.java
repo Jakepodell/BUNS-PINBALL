@@ -63,6 +63,7 @@ public class Collision{
 					ball.flipYVelocity();
 				if((ball.getLeftSide()>=bumperCenterX+s && ball.getXVelocity()<0) || (ball.getRightSide()<=bumperCenterX-s && ball.getXVelocity()>0))
 					ball.flipXVelocity();
+				PinballDriver.playBumperSound();
 				/*else{
 					ball.flipXVelocity();
 					ball.flipYVelocity();
@@ -78,14 +79,30 @@ public class Collision{
 				ball.addYVelocity();
 				sp.addScore(FLIPPER);
 				ball.updateBall((int)ball.getX(),Flipper.Y-Flipper.HEIGHT-15);
+				PinballDriver.playFlipperSound();
 			}
 		}
 	}
 	public static void checkStaticFlipperCollision(Flipper left,Flipper right, Ball ball){
 		if(left.isUp()&&left.getUpLine().intersects(ball.getBounds2D())){
-			System.out.println("Collision");
 			ball.setXVelocity((int)ball.getXVelocity()+-4);
 			ball.setYVelocity(-3);
+			PinballDriver.playFlipperSound();
+		}
+		if((!left.isUp())&&left.getDownLine().intersects(ball.getBounds2D())){
+			ball.setXVelocity((int)ball.getXVelocity()+2);
+			ball.setYVelocity(1);
+			PinballDriver.playFlipperSound();
+		}
+		if(right.isUp()&&right.getUpLine().intersects(ball.getBounds2D())){
+			ball.setXVelocity((int)ball.getXVelocity()+1);
+			ball.setYVelocity(-3);
+			PinballDriver.playFlipperSound();
+		}
+		if((!right.isUp())&&right.getDownLine().intersects(ball.getBounds2D())){
+			ball.setXVelocity((int)ball.getXVelocity()-2);
+			ball.setYVelocity(1);
+			PinballDriver.playFlipperSound();
 		}
 	}
 	public static boolean ballHasFallen(Ball b){

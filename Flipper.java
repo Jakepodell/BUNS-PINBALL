@@ -1,16 +1,18 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import java.awt.geom.*;
 public class Flipper
 {
-	public static final int WIDTH=60;
+	public static final int WIDTH=55;
 	public static final int HEIGHT=30;
 	public static final int Y = 450;
 	boolean isUp = false;
 	int x1;
 	int y1;
-	int xlength = 60;
+	int xlength = 55;
 	int ylength = 30;
 	Polygon triangleArea;
 	int[] triangleYs = {Flipper.Y, Flipper.Y-Flipper.HEIGHT,Flipper.Y+(Flipper.HEIGHT)};
@@ -25,6 +27,7 @@ public class Flipper
 	{
 		ylength*=-1;
 		isUp=!isUp;
+		PinballDriver.playFlipperSound();
 	}
 	public Area getCollisionArea(){
 		return new Area(triangleArea);
@@ -34,6 +37,9 @@ public class Flipper
 	}
 	public Line2D.Double getUpLine(){
 		return upLine;
+	}
+	public Line2D.Double getDownLine(){
+		return downLine;
 	}
 
 }

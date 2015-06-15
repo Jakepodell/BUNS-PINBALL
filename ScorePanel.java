@@ -32,6 +32,8 @@ public class ScorePanel extends JPanel
 				add(score);
 				add(lives);
 				add(HighScore);
+				setVisible(false);
+		        setOpaque(false);
 	}
 	public int getScore()
 	{
@@ -54,5 +56,9 @@ public class ScorePanel extends JPanel
 	public int getHighScore()
 	{
 		return highscore;
+	}
+	public void setHighScore(int hs){
+		highscore  =hs;
+		HighScore.setText("The High Score is: " + highscore);
 	}
 }

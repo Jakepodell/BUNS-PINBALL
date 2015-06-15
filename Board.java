@@ -1,4 +1,25 @@
-public final static int Y=0;
+import javax.imageio.ImageIO;
+import javax.swing.*;
+
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import java.lang.Object;
+import java.awt.geom.RectangularShape;
+import java.awt.geom.Rectangle2D;
+import java.awt.geom.Rectangle2D.Double;
+import java.awt.image.BufferedImage;
+import java.util.*;
+public class Board extends Rectangle2D.Double
+{
+	Random r = new Random();
+	Ball[] balls = {(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-50),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-50),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-50),getBoardY()))};
+	ArrayList<Bumper> bumpers = new ArrayList<Bumper>();
+	int ballIndex=0;
+	Ball ball = balls[0];
+	public final static int X=0;
+	public final static int Y=0;
 	public final static int WIDTH=350;
 	public final static int HEIGHT=500;
 	//System.out.println("Fdsf");
@@ -6,6 +27,7 @@ public final static int Y=0;
 	RightFlipper rf = new RightFlipper(RightFlipper.X,Flipper.Y);
 	Flipper[] flips = {rf,lf};
 	ScorePanel sp;
+	BufferedImage i;
 	public Board(int xcord, int ycord, int height, int width)
 	{
 		super(xcord,ycord,height,width);
@@ -15,6 +37,10 @@ public final static int Y=0;
 		Y+PinballDriver.APPLETPADDING,
 		WIDTH,
 		HEIGHT);
+
+		try{
+			i = ImageIO.read(new File("grasso.jpg"));
+		}catch(IOException e){}
 		this.sp=sp;
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2-30),200));
 		bumpers.add(new Bumper((int)(getX()+Board.WIDTH/2+30),200));
@@ -33,10 +59,15 @@ public final static int Y=0;
 	}
 	public void drawBoard(Graphics2D g)
 	{
+		BasicStroke bs = new BasicStroke(5);
+		g.setStroke(bs);
 		g.draw(this);
+		g.drawImage(i, PinballDriver.APPLETPADDING, PinballDriver.APPLETPADDING, Board.WIDTH, Board.HEIGHT, null);
+		g.setColor(Color.red);
 		drawBottom(g);
 		//g.draw(ball);
 		ball.drawBall(g);
+		g.setColor(Color.red);
 		lf.drawFlip(g);
 		rf.drawFlip(g);
 		for(Bumper bumper:bumpers)

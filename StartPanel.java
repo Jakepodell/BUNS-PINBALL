@@ -1,16 +1,21 @@
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+
 import javax.swing.JPanel;
 
-public class StartPanel extends JFrame
+public class StartPanel extends JPanel implements ActionListener
 {
 
 	JLabel start;
 	JButton ins;
 	JButton play;
+	boolean isClicked;
 	public StartPanel()
 	{
 				setVisible(true);
@@ -22,6 +27,8 @@ public class StartPanel extends JFrame
 				add(start);
 				//add(ins);
 				add(play);
+				play.addActionListener(this);
+				isClicked=false;
 
 				//play.addActionListener(this);
 	}
@@ -32,10 +39,14 @@ public class StartPanel extends JFrame
 	public static void main(String[] args){
 		new StartPanel();
 	}
-	/*public void actionPerformed(ActionEvent e){
+	public void actionPerformed(ActionEvent e){
 		if(e.getSource()==play){
-			System.out.println("Will work");
+			isClicked=true;
+			System.out.println("Fdsfsa");
 		}
-	}*/
+	}
+	public boolean isClicked(){
+		return isClicked;
+	}
 
 }

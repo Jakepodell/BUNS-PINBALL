@@ -4,7 +4,7 @@ import javax.swing.*;
 
 import java.awt.event.*;
 
-public class ParticleDriver extends JApplet implements MouseListener, ActionListener
+/*public class ParticleDriver extends JApplet implements MouseListener, ActionListener
 {
 	DrawingPanel dp;
 	ParticleEngine pe;
@@ -57,3 +57,4 @@ public class ParticleDriver extends JApplet implements MouseListener, ActionList
 	}
 
 }
+*/
