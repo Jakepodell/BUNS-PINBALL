@@ -14,7 +14,7 @@ import java.util.*;
 public class Board extends Rectangle2D.Double
 {
 	Random r = new Random();
-	Ball[] balls = {(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-50),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-50),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-50),getBoardY()))};
+	Ball[] balls = {(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-150),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-150),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-150),getBoardY()))};
 	ArrayList<Bumper> bumpers = new ArrayList<Bumper>();
 	int ballIndex=0;
 	Ball ball = balls[0];
@@ -95,9 +95,18 @@ public class Board extends Rectangle2D.Double
 		ball.gravitize();
 		if(Collision.ballHasFallen(ball)){
 			ballIndex++;
-			ball=balls[ballIndex];
+			if(ballIndex<balls.length)ball=balls[ballIndex];
 			sp.loseLife();
 		}
+	}
+	public void restart(){
+		Ball[] balls = {(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-150),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-150),getBoardY())),(new Ball(PinballDriver.APPLETPADDING*2+r.nextInt(WIDTH-150),getBoardY()))};
+		int ballIndex=0;
+		Ball ball = balls[0];
+		sp.restart();
+	}
+	public boolean outOfBalls(){
+		return ballIndex>=balls.length;
 	}
 	public int getRightSide(){
 		return WIDTH+PinballDriver.APPLETPADDING;

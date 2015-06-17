@@ -17,6 +17,9 @@ public class BoardPanel extends JPanel
 		setVisible(false);
 
 	}
+	public void restart(ScorePanel sp){
+		b = new Board(sp);
+	}
 	public void drawBoardPanel(Graphics2D g2){
 		b.drawBoard(g2);
 	}

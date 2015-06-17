@@ -35,6 +35,11 @@ public class ScorePanel extends JPanel
 				setVisible(false);
 		        setOpaque(false);
 	}
+	public void restart(){
+		currentscore = 0;
+		highscore = 0;
+		livesleft = 3;
+	}
 	public int getScore()
 	{
 		return currentscore;
