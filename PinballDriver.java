@@ -11,7 +11,11 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 	//Timer timer;
 	Thread thread;
 	ScorePanel s;
+<<<<<<< HEAD
 	ReplayPanel r = new ReplayPanel();
+=======
+	ReplayPanel r;
+>>>>>>> origin/master
 	double scoreCounter;
 	static AudioClip bumpSound, flipperSound, backgroundSound, bouncyBounce,bounce2, launchSound, solidSound,menuSound,success,lose,grassfrohit, explodeSound, explodeSound2;
 	enum GameState{playing,won,menu,lose}
@@ -25,11 +29,13 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		setSize(new Dimension(Board.WIDTH+APPLETPADDING*2+300, Board.HEIGHT+APPLETPADDING*2));
 		s = new ScorePanel();
 		bp = new BoardPanel(s);
+		r = new ReplayPanel();
 		//timer = new Timer(20, this);
 		//timer.start();
 		setLayout(null);
 		s.setLocation(450,50);
 		add(s);
+		add(r);
 		thread = new Thread(this);
 		thread.start();
 		setFocusable(true);
@@ -38,6 +44,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		add(sp);
 		add(r);
 		pe = new ParticleEngine();
+<<<<<<< HEAD
 		
 		backgroundSound = getAudioClip(getCodeBase(), "background.wav");
 		bumpSound = getAudioClip(getCodeBase(), "bumpSound.wav");
@@ -53,6 +60,23 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 		explodeSound= getAudioClip(getCodeBase(),"explode.wav");
 		explodeSound2= getAudioClip(getCodeBase(),"explode2.wav");
 		
+=======
+
+		backgroundSound = getAudioClip(getDocumentBase(), "background.wav");
+		bumpSound = getAudioClip(getDocumentBase(), "bumpSound.wav");
+		flipperSound = getAudioClip(getDocumentBase(), "flipperSound.wav");
+		bounce2 = getAudioClip(getDocumentBase(), "bounce2.wav");
+		bouncyBounce = getAudioClip(getDocumentBase(), "bouncy-bounce.wav");
+		launchSound = getAudioClip(getDocumentBase(), "launch.wav");
+		solidSound = getAudioClip(getDocumentBase(), "solidcollide.wav");
+		menuSound= getAudioClip(getDocumentBase(),"menubackground.wav");
+		success= getAudioClip(getDocumentBase(),"success.wav");
+		lose= getAudioClip(getDocumentBase(),"lose.wav");
+		grassfrohit= getAudioClip(getDocumentBase(),"grassfroHit.wav");
+		explodeSound= getAudioClip(getDocumentBase(),"explode.wav");
+		explodeSound2= getAudioClip(getDocumentBase(),"explode2.wav");
+
+>>>>>>> origin/master
 		//backgroundSound.loop();
 	//	bouncyBounce.loop();
 
@@ -65,8 +89,8 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 	}
 	public void run(){
 		while(true){
-			
-			
+
+
 			try {
 				Thread.sleep(15);
 			} catch (InterruptedException e) {
@@ -76,6 +100,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 				sp.setVisible(false);
 				bp.setVisible(true);
 				s.setVisible(true);
+				r.setVisible(false);
 				state = GameState.playing;
 				backgroundSound.loop();
 			}
@@ -99,6 +124,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 				repaint();
 				if(scoreCounter%20==0)s.addScore(1);
 				scoreCounter++;
+<<<<<<< HEAD
 				if(bp.getBoard().outOfBalls()){
 					state = GameState.lose;
 					bp.setVisible(false);
@@ -106,6 +132,18 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 					r.setVisible(true);
 					highScore=s.getHighScore();
 				}
+=======
+				if(s.getLives() == 0)
+				{
+					state=GameState.lose;
+				}
+			}
+			if(state==GameState.lose){
+				sp.setVisible(false);
+				bp.setVisible(false);
+				s.setVisible(false);
+				r.setVisible(true);
+>>>>>>> origin/master
 			}
 			
 			if(s.getScore()>s.getHighScore()){
@@ -120,7 +158,7 @@ public class PinballDriver extends JApplet implements ActionListener, Runnable, 
 			for (Particle p : pe.getParticleList())
 				p.tick();
 			pe.removeOffScreenParticles();
-			
+
 		}
 	}
 

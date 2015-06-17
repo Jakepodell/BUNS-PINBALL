@@ -7,30 +7,35 @@ import javax.swing.JPanel;
 
 public class ScorePanel extends JPanel
 {
-
+	Toolkit tk;
 	JLabel score;
 	JLabel lives;
 	JLabel HighScore;
 	JLabel p;
+	Image i1,i2,i3;
 	int currentscore = 0;
 	int highscore = 0;
 	int livesleft = 3;
 
 	public ScorePanel()
 	{
+				tk = Toolkit.getDefaultToolkit();
+				//i1 = tk.getImage("");
+				//i2 = tk.getImage("");
+				//i3 = tk.getImage("");
 				setSize(300,500);
 				setLayout(new GridLayout(4,1));
 				score = new JLabel("Your score is: " + currentscore);
-				lives = new JLabel("You have " + livesleft + " lives left");
+				//lives = new JLabel("" + i3);
 				HighScore = new JLabel("The High Score is: " + highscore);
 				p = new JLabel("Score Panel");
 				score.setLocation(0,100);
-				lives.setLocation(0,200);
+				//lives.setLocation(0,200);
 				HighScore.setLocation(0,300);
 				p.setLocation(0,0);
 				add(p);
 				add(score);
-				add(lives);
+				//add(lives);
 				add(HighScore);
 				setVisible(false);
 		        setOpaque(false);
@@ -50,9 +55,17 @@ public class ScorePanel extends JPanel
 		score.setText("Your score is: " + currentscore);
 	}
 	public void loseLife()
-		{
-			livesleft--;
-			lives.setText("You have " + livesleft + " lives left");
+	{
+
+			/*livesleft--;
+			if(livesleft == 2)
+			{
+				lives.setText("" + i2);
+			}
+			if(livesleft == 1)
+			{
+				lives.setText("" + i1);
+			}*/
 	}
 	public int getLives()
 	{
